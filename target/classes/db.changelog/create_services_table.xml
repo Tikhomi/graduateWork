@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_services_table" author="postgres">
+        <createTable tableName="services">
+            <column autoIncrement="true" name="id_service" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="nm_service" type="varchar(200)"/>
+            <column name="cost_serv" type="INT"/>
+
+            <column name="id_appointment" type="bigint">
+                <constraints foreignKeyName="fk_appointment_1" referencedTableName="appointment" referencedColumnNames="id_appointment"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
+
