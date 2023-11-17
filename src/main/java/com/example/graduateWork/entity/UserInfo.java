@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user_info")
@@ -31,19 +32,13 @@ public class UserInfo {
     @Column(name = "birthday")
     private Date birthday;
 
-    @ManyToOne
-    @JoinColumn(name = "id_role")
-    @JsonIgnore
-    private Role role;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_role")
+    private List<Role> role;
 
-    @ManyToOne
-    @JoinColumn(name = "id_user")
-    @JsonIgnore
-    private Users users;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_user")
+    private List<Users> users;
 
-    @ManyToOne
-    @JoinColumn(name = "id_specification")
-    @JsonIgnore
-    private SpecificationDic specificationDic;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_specification")
+    private List<Appointment> appointment;
 
 }

@@ -1,12 +1,13 @@
 package com.example.graduateWork.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name = "payment")
 @Data
@@ -25,9 +26,7 @@ public class Payment {
     @Column(name = "cost_pay")
     private int costPay;
 
-    @ManyToOne
-    @JoinColumn(name = "id_appointment")
-    @JsonIgnore
-    private Appointment appointment;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_appointment")
+    private List<Appointment> appointment;
 
 }

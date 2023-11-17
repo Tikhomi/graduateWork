@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "services")
@@ -24,10 +25,8 @@ public class Services {
     @Column(name = "cost_serv")
     private int costServ;
 
-    @ManyToOne
-    @JoinColumn(name = "id_appointment")
-    @JsonIgnore
-    private Appointment appointment;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_appointment")
+    private List<Appointment> appointment;
 
 
 }
