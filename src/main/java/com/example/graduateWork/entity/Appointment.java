@@ -22,6 +22,9 @@ public class Appointment {
     @Column(name = "dt_rec")
     private Date dt_rec;
 
+    @Column(name = "dt_ap")
+    private Date dt_ap;
+
     @Column(name = "description")
     private String description;
 

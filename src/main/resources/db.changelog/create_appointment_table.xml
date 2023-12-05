@@ -10,6 +10,9 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="dt_rec" type="DATE"/>
+
+            <column name="dt_ap" type="DATE"/>
+
             <column name="description" type="varchar(600)"/>
 
             <column name="id_client" type="bigint">
