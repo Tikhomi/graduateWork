@@ -19,8 +19,8 @@ public class AppointmentService {
     }
 
     public List<AppointmentDTO> getAllAppointments() {
-        List<Appointment> books = appointmentRepository.findAll();
-        return books.stream()
+        List<Appointment> appointments = appointmentRepository.findAll();
+        return appointments.stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
@@ -37,9 +37,9 @@ public class AppointmentService {
         return appointmentRepository.save(appointment);
     }
 
-    public Long delete(Long id) {
-        appointmentRepository.deleteById(id);
-        return id;
+    public Long delete(Long id_appointment) {
+        appointmentRepository.deleteById(id_appointment);
+        return id_appointment;
     }
 
     private AppointmentDTO convertToDTO(Appointment appointment) {

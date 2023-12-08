@@ -19,17 +19,17 @@ public class AppointmentController {
         this.appointmentService = appointmentService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<AppointmentDTO>> getAllAppointments() {
-        List<AppointmentDTO> appointments = appointmentService.getAllAppointments();
-        return ResponseEntity.ok(appointments);
+        List<AppointmentDTO> appointmentDTO = appointmentService.getAllAppointments();
+        return ResponseEntity.ok(appointmentDTO);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AppointmentDTO> getAppointmentById(@PathVariable("id") Long id) {
-        AppointmentDTO appointment = appointmentService.getAppointmentById(id);
-        if (appointment != null) {
-            return ResponseEntity.ok(appointment);
+    public ResponseEntity<AppointmentDTO> getAppointmentById(@PathVariable("id_appointment") Long id_appointment) {
+        AppointmentDTO appointmentS = appointmentService.getAppointmentById(id_appointment);
+        if (appointmentS != null) {
+            return ResponseEntity.ok(appointmentS);
         } else {
             return ResponseEntity.notFound().build();
         }

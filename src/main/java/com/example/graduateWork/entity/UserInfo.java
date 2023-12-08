@@ -32,8 +32,9 @@ public class UserInfo {
     @Column(name = "birthday")
     private Date birthday;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_role")
-    private List<Role> role;
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_user")
     private List<Users> users;

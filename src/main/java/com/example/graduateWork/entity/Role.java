@@ -6,18 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "role")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_role")
-    private Long id_role;
-
-    @Column(name = "nm_role")
-    private String nm_role;
-
+public enum Role {
+    ROLE_DOCTOR,
+    ROLE_PATIENT,
+    ROLE_ADMIN;
 }
