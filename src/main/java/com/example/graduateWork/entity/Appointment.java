@@ -17,7 +17,7 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_appointment")
-    private Long id_appointment;
+    private Long idAppointment;
 
     @Column(name = "dt_rec")
     private Date dt_rec;

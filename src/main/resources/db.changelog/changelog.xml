@@ -14,4 +14,5 @@
     <include file="create_services_table.xml" relativeToChangelogFile="true"/>
     <include file="create_payment_table.xml" relativeToChangelogFile="true"/>
     <include file="create_userInfo_table.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>

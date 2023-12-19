@@ -25,8 +25,8 @@ public class AppointmentService {
                 .collect(Collectors.toList());
     }
 
-    public AppointmentDTO getAppointmentById(Long id_appointment) {
-        Appointment appointment= appointmentRepository.getAppointmentById(id_appointment);
+    public AppointmentDTO getAppointmentById(Long idAppointment) {
+        Appointment appointment= appointmentRepository.getAppointmentByIdAppointment(idAppointment);
         if (appointment != null) {
             return convertToDTO(appointment);
         }
@@ -37,9 +37,9 @@ public class AppointmentService {
         return appointmentRepository.save(appointment);
     }
 
-    public Long delete(Long id_appointment) {
-        appointmentRepository.deleteById(id_appointment);
-        return id_appointment;
+    public Long delete(Long idAppointment) {
+        appointmentRepository.deleteById(idAppointment);
+        return idAppointment;
     }
 
     private AppointmentDTO convertToDTO(Appointment appointment) {

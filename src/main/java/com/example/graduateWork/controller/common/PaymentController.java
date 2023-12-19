@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/payment")
+@RequestMapping("/api")
 public class PaymentController {
     private final PaymentService paymentService;
 
@@ -19,15 +19,15 @@ public class PaymentController {
         this.paymentService = paymentService;
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<PaymentDTO>> getAllAppointments() {
+    @GetMapping("/payments")
+    public ResponseEntity<List<PaymentDTO>> getAllPayment() {
         List<PaymentDTO> paymentDTO = paymentService.getAllPayment();
         return ResponseEntity.ok(paymentDTO);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PaymentDTO> getAppointmentById(@PathVariable("id_payment") Long id_payment) {
-        PaymentDTO payments = paymentService.getPaymentById(id_payment);
+    @GetMapping("/payment/{idPayment}")
+    public ResponseEntity<PaymentDTO> getAppointmentById(@PathVariable("idPayment") Long idPayment) {
+        PaymentDTO payments = paymentService.getPaymentById(idPayment);
         if (payments != null) {
             return ResponseEntity.ok(payments);
         } else {
@@ -35,15 +35,15 @@ public class PaymentController {
         }
     }
 
-    @PostMapping("/add")
+    @PostMapping("/payment/add")
     public void addAppointment(@RequestBody Payment payment) {
         paymentService.save(payment);
     }
 
 
-    @DeleteMapping("/{id_appointment}")
-    public ResponseEntity<Void> deleteAppointment(@PathVariable("id_payment") Long id_payment) {
-        paymentService.delete(id_payment);
+    @DeleteMapping("/payment/del/{idPayment}")
+    public ResponseEntity<Void> deleteAppointment(@PathVariable("idPayment") Long idPayment) {
+        paymentService.delete(idPayment);
         return ResponseEntity.noContent().build();
     }
 }

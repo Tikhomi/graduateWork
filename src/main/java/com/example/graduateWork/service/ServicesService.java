@@ -21,8 +21,8 @@ public class ServicesService {
         return services;
     }
 
-    public Services getServiceById(Long id_services) {
-        Services services = servicesRepository.getServicesById(id_services);
+    public Services getServiceById(Long idService) {
+        Services services = servicesRepository.getServicesByIdService(idService);
         if (services != null) {
             return services;
         }
@@ -33,8 +33,8 @@ public class ServicesService {
         return servicesRepository.save(services);
     }
 
-    public Long delete(Long id_service) {
-        servicesRepository.deleteById(id_service);
-        return id_service;
+    public Long delete(Long idService) {
+        servicesRepository.deleteById(idService);
+        return idService;
     }
 }

@@ -12,10 +12,6 @@
             <column name="nm_service" type="varchar(200)"/>
             <column name="cost_serv" type="INT"/>
 
-            <column name="id_appointment" type="bigint">
-                <constraints foreignKeyName="fk_appointment_1" referencedTableName="appointment" referencedColumnNames="id_appointment"/>
-            </column>
-
         </createTable>
     </changeSet>
 </databaseChangeLog>

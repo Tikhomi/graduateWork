@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class UsersDTO {
     private Long id_user;
-    private int phoneNumber;
+    private String phoneNumber;
 
-    public UsersDTO(Long id_user, int phoneNumber) {
+    public UsersDTO(Long id_user, String phoneNumber) {
         this.id_user = id_user;
         this.phoneNumber = phoneNumber;
     }

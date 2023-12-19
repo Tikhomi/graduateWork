@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
-
-    UserInfo getUserInfoById(Long isUserInfo);
+    UserInfo getUserInfoByIdUserInfo(Long idUserInfo);
 }

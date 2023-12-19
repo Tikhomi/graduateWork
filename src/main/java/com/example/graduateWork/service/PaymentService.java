@@ -26,8 +26,8 @@ public class PaymentService {
                 .collect(Collectors.toList());
     }
 
-    public PaymentDTO getPaymentById(Long id_payment) {
-        Payment payment= paymentRepository.getPaymentById(id_payment);
+    public PaymentDTO getPaymentById(Long idPayment) {
+        Payment payment= paymentRepository.getPaymentByIdPayment(idPayment);
         if (payment != null) {
             return convertToDTO(payment);
         }
@@ -38,9 +38,9 @@ public class PaymentService {
         return paymentRepository.save(payment);
     }
 
-    public Long delete(Long id_payment) {
-        paymentRepository.deleteById(id_payment);
-        return id_payment;
+    public Long delete(Long idPayment) {
+        paymentRepository.deleteById(idPayment);
+        return idPayment;
     }
 
     private PaymentDTO convertToDTO(Payment payment) {

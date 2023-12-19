@@ -18,7 +18,7 @@ public class UserInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user_info")
-    private Long id_user_info;
+    private Long idUserInfo;
 
     @Column(name = "name")
     private String name;
@@ -32,14 +32,11 @@ public class UserInfo {
     @Column(name = "birthday")
     private Date birthday;
 
-    @Column(name = "role")
-    @Enumerated(EnumType.STRING)
-    private Role role;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_user")
     private List<Users> users;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_specification")
-    private List<Appointment> appointment;
+    private List<SpecificationDic> specificationDics;
 
 }

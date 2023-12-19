@@ -17,7 +17,7 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_payment")
-    private Long id_payment;
+    private Long idPayment;
 
     @Column(name = "date_pay")
     @Temporal(TemporalType.DATE)
@@ -26,7 +26,7 @@ public class Payment {
     @Column(name = "cost_pay")
     private int costPay;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_appointment")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAppointment")
     private List<Appointment> appointment;
 
 }

@@ -15,9 +15,6 @@
             <column name="patronymic" type="varchar(100)"/>
             <column name="birthday" type="DATE"/>
 
-            <column name="id_role" type="bigint">
-                <constraints foreignKeyName="fk_role_1" referencedTableName="role" referencedColumnNames="id_role"/>
-            </column>
             <column name="id_user" type="bigint">
                 <constraints foreignKeyName="fk_users_1" referencedTableName="users" referencedColumnNames="id_user"/>
             </column>

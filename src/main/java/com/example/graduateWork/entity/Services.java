@@ -17,16 +17,12 @@ public class Services {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_service")
-    private Long id_service;
+    private Long idService;
 
     @Column(name = "nm_service")
     private String nm_service;
 
     @Column(name = "cost_serv")
     private int costServ;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_appointment")
-    private List<Appointment> appointment;
-
 
 }

@@ -10,9 +10,9 @@
                 <constraints primaryKey="true"/>
             </column>
 
-            <column name="phone_number" type="INT"/>
+            <column name="phone_number" type="varchar(17)"/>
             <column name="password" type="varchar(250)"/>
-
+            <column name="role" type="varchar(64)"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

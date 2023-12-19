@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/appointments")
+@RequestMapping("/api")
 public class AppointmentController {
     private final AppointmentService appointmentService;
 
@@ -19,15 +19,15 @@ public class AppointmentController {
         this.appointmentService = appointmentService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/appointments")
     public ResponseEntity<List<AppointmentDTO>> getAllAppointments() {
         List<AppointmentDTO> appointmentDTO = appointmentService.getAllAppointments();
         return ResponseEntity.ok(appointmentDTO);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<AppointmentDTO> getAppointmentById(@PathVariable("id_appointment") Long id_appointment) {
-        AppointmentDTO appointmentS = appointmentService.getAppointmentById(id_appointment);
+    @GetMapping("/appointment/{idAppointment}")
+    public ResponseEntity<AppointmentDTO> getAppointmentById(@PathVariable("idAppointment") Long idAppointment) {
+        AppointmentDTO appointmentS = appointmentService.getAppointmentById(idAppointment);
         if (appointmentS != null) {
             return ResponseEntity.ok(appointmentS);
         } else {
@@ -35,15 +35,15 @@ public class AppointmentController {
         }
     }
 
-    @PostMapping("/add")
+    @PostMapping("/appointment/add")
     public void addAppointment(@RequestBody Appointment appointment) {
         appointmentService.save(appointment);
     }
 
 
-    @DeleteMapping("/{id_appointment}")
-    public ResponseEntity<Void> deleteAppointment(@PathVariable("id_appointment") Long id_appointment) {
-        appointmentService.delete(id_appointment);
+    @DeleteMapping("/appointment/del/{idAppointment}")
+    public ResponseEntity<Void> deleteAppointment(@PathVariable("idAppointment") Long idAppointment) {
+        appointmentService.delete(idAppointment);
         return ResponseEntity.noContent().build();
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/services")
+@RequestMapping("/api")
 public class ServicesController {
     private final ServicesService servicesService;
 
@@ -18,15 +18,15 @@ public class ServicesController {
         this.servicesService = servicesService;
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Services>> getAllAppointments() {
+    @GetMapping("/services")
+    public ResponseEntity<List<Services>> getAllServices() {
         List<Services> services = servicesService.getAllAppointments();
         return ResponseEntity.ok(services);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Services> getAppointmentById(@PathVariable("id_service") Long id_service) {
-        Services service = servicesService.getServiceById(id_service);
+    @GetMapping("/service/{id}")
+    public ResponseEntity<Services> getAppointmentById(@PathVariable("idService") Long idService) {
+        Services service = servicesService.getServiceById(idService);
         if (service != null) {
             return ResponseEntity.ok(service);
         } else {
@@ -34,13 +34,13 @@ public class ServicesController {
         }
     }
 
-    @PostMapping("/add")
+    @PostMapping("/service/add")
     public void addAppointment(@RequestBody Services services) {
         servicesService.save(services);
     }
 
 
-    @DeleteMapping("/{id_service}")
+    @DeleteMapping("/services/del/{id_service}")
     public ResponseEntity<Void> deleteAppointment(@PathVariable("id_service") Long id_service) {
         servicesService.delete(id_service);
         return ResponseEntity.noContent().build();

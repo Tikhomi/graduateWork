@@ -2,6 +2,7 @@ package com.example.graduateWork.service;
 
 import com.example.graduateWork.dto.UserInfoDTO;
 import com.example.graduateWork.entity.Appointment;
+import com.example.graduateWork.entity.SpecificationDic;
 import com.example.graduateWork.entity.UserInfo;
 import com.example.graduateWork.entity.Users;
 import com.example.graduateWork.repository.UserInfoRepository;
@@ -28,8 +29,8 @@ public class UserInfoService {
                 .collect(Collectors.toList());
     }
 
-    public UserInfoDTO getUserInfoById(Long is_user_info) {
-        UserInfo userInfo= userInfoRepository.getUserInfoById(is_user_info);
+    public UserInfoDTO getUserInfoById(Long idUserInfo) {
+        UserInfo userInfo= userInfoRepository.getUserInfoByIdUserInfo(idUserInfo);
         if (userInfo != null) {
             return convertToDTO(userInfo);
         }
@@ -40,9 +41,9 @@ public class UserInfoService {
         return userInfoRepository.save(userInfo);
     }
 
-    public Long delete(Long is_user_info) {
-        userInfoRepository.deleteById(is_user_info);
-        return is_user_info;
+    public Long delete(Long idUserInfo) {
+        userInfoRepository.deleteById(idUserInfo);
+        return idUserInfo;
     }
 
     private UserInfoDTO convertToDTO(UserInfo userInfo) {
@@ -50,11 +51,11 @@ public class UserInfoService {
                 .stream()
                 .collect(Collectors.toList());
 
-        List<Appointment> appointmentList = userInfo.getAppointment()
+        List<SpecificationDic> specificationDicsList = userInfo.getSpecificationDics()
                 .stream()
                 .collect(Collectors.toList());
 
         return new UserInfoDTO(userInfo.getName(), userInfo.getLastname(), userInfo.getPatronymic(),
-                userInfo.getBirthday(), userList, appointmentList);
+                userInfo.getBirthday(), userList, specificationDicsList);
     }
 }
