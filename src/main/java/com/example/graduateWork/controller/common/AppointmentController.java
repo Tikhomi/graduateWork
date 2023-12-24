@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://127.0.0.1:3000")
 public class AppointmentController {
     private final AppointmentService appointmentService;
 
@@ -39,7 +40,6 @@ public class AppointmentController {
     public void addAppointment(@RequestBody Appointment appointment) {
         appointmentService.save(appointment);
     }
-
 
     @DeleteMapping("/appointment/del/{idAppointment}")
     public ResponseEntity<Void> deleteAppointment(@PathVariable("idAppointment") Long idAppointment) {

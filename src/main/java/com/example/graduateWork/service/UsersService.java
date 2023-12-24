@@ -1,8 +1,11 @@
 package com.example.graduateWork.service;
 
 import com.example.graduateWork.dto.UsersDTO;
+import com.example.graduateWork.entity.RegistrationRequest;
+import com.example.graduateWork.entity.Role;
 import com.example.graduateWork.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.example.graduateWork.repository.UsersRepository;
 
@@ -12,10 +15,12 @@ import java.util.stream.Collectors;
 @Service
 public class UsersService {
     private final UsersRepository usersRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UsersService(UsersRepository usersRepository) {
+    public UsersService(UsersRepository usersRepository, PasswordEncoder passwordEncoder) {
         this.usersRepository = usersRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<UsersDTO> getAllUserInfos() {
@@ -46,4 +51,15 @@ public class UsersService {
         return new UsersDTO(users.getId_user(), users.getPhoneNumber());
 
     }
+
+    public void registerUser(RegistrationRequest registrationRequest) {
+        Users newUser = new Users();
+        newUser.setPhoneNumber(registrationRequest.getPhoneNumber());
+        newUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
+        newUser.setRole(Role.valueOf(registrationRequest.getRole()));
+
+        usersRepository.save(newUser);
+    }
+
 }
+

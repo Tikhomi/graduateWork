@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://127.0.0.1:3000")
 public class PaymentController {
     private final PaymentService paymentService;
 
