@@ -88,7 +88,25 @@
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.twilio.sdk</groupId>
+			<artifactId>twilio</artifactId>
+			<version>9.7.0</version>
+		</dependency>
+
+
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>twilio-releases</id>
+			<url>https://repo.twilio.com/releases</url>
+		</repository>
+		<repository>
+			<id>twilio-snapshots</id>
+			<url>https://repo.twilio.com/snapshots</url>
+		</repository>
+	</repositories>
+
 
 	<build>
 		<plugins>
