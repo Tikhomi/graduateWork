@@ -8,30 +8,22 @@ import com.example.graduateWork.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.twilio.Twilio;
-import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.type.PhoneNumber;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class UsersService {
+
     private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
-
-    // Twilio credentials
-//     private static final String ACCOUNT_SID = "AC4e965c09b5ab8b29dec5c05addb8590b";
-//    private static final String AUTH_TOKEN = "05883860db55a56cd85703a64d0268b3";
-//    private static final String TWILIO_PHONE_NUMBER = "8 9024261169";
+    private final SmsService smsService;
 
     @Autowired
-    public UsersService(UsersRepository usersRepository, PasswordEncoder passwordEncoder) {
+    public UsersService(UsersRepository usersRepository, PasswordEncoder passwordEncoder, SmsService smsService) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
-
-        // Initialize Twilio
-      // Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        this.smsService = smsService;
     }
 
     public List<UsersDTO> getAllUserInfos() {
@@ -63,26 +55,31 @@ public class UsersService {
     }
 
     public void registerUser(RegistrationRequest registrationRequest) {
+
+        //проверка пароля на его отсутствие
+        if (registrationRequest.getPassword() == null || registrationRequest.getPassword().trim().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be empty");
+        }
+
+        //проверка номера телефона на его отсутствие
+        if (registrationRequest.getPhoneNumber() == null) {
+            throw new IllegalArgumentException("Phone number cannot be null");
+        }
+
+        //проверка номера телефона на то чтобы он начинался с 7
+        if (registrationRequest.getPhoneNumber() < 70000000000L || registrationRequest.getPhoneNumber() >= 80000000000L) {
+            throw new IllegalArgumentException("Phone number must start with 7");
+        }
         Users newUser = new Users();
         newUser.setPhoneNumber(registrationRequest.getPhoneNumber());
+
+        System.out.println("Введенный номер телефона: " + registrationRequest.getPhoneNumber());
         newUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
+        System.out.println("Введенный пароль: " + registrationRequest.getPassword());
         newUser.setRole(Role.ROLE_PATIENT);
 
         usersRepository.save(newUser);
 
-
-
-    // Send SMS with Twilio
-       // sendSMS(newUser.getPhoneNumber(), "Registration successful. Welcome to our application!");
+        //smsService.sendSms(registrationRequest.getPhoneNumber());
     }
-
-//    private void sendSMS(String toPhoneNumber, String messageBody) {
-//        Message message = Message.creator(
-//                new PhoneNumber(toPhoneNumber),
-//                new PhoneNumber(TWILIO_PHONE_NUMBER),
-//                messageBody
-//        ).create();
-//
-//        System.out.println("SMS sent with SID: " + message.getSid());
-//    }
 }

@@ -33,4 +33,7 @@ public class Appointment {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_user")
     private List<Users> users_cl;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_status")
+    private List<StatusDic> status;
 }

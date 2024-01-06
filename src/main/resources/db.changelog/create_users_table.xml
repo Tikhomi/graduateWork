@@ -10,7 +10,7 @@
                 <constraints primaryKey="true"/>
             </column>
 
-            <column name="phone_number" type="varchar(17)"/>
+            <column name="phone_number" type="bigint"/>
             <column name="password" type="varchar(250)"/>
             <column name="role" type="varchar(64)"/>
         </createTable>

@@ -2,14 +2,14 @@ package com.example.graduateWork.entity;
 
 public class RegistrationRequest {
 
-    private String phoneNumber;
+    private Long phoneNumber;
     private String password;
     private String role;
-    public String getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

@@ -4,10 +4,11 @@ import lombok.Data;
 
 @Data
 public class UsersDTO {
-    private Long id_user;
-    private String phoneNumber;
 
-    public UsersDTO(Long id_user, String phoneNumber) {
+    private Long id_user;
+    private Long phoneNumber;
+
+    public UsersDTO(Long id_user, Long phoneNumber) {
         this.id_user = id_user;
         this.phoneNumber = phoneNumber;
     }
