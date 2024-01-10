@@ -5,6 +5,7 @@ import com.example.graduateWork.entity.RegistrationRequest;
 import com.example.graduateWork.entity.Role;
 import com.example.graduateWork.entity.Users;
 import com.example.graduateWork.repository.UsersRepository;
+import com.example.graduateWork.service.sms.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -58,7 +59,7 @@ public class UsersService {
 
         //проверка пароля на его отсутствие
         if (registrationRequest.getPassword() == null || registrationRequest.getPassword().trim().isEmpty()) {
-            throw new IllegalArgumentException("Password cannot be empty");
+            throw new IllegalArgumentException("Password cannot be null");
         }
 
         //проверка номера телефона на его отсутствие
@@ -66,10 +67,11 @@ public class UsersService {
             throw new IllegalArgumentException("Phone number cannot be null");
         }
 
-        //проверка номера телефона на то чтобы он начинался с 7
+        //проверка номера телефона на то чтобы он начинался с 7 и был ровно 11 символов
         if (registrationRequest.getPhoneNumber() < 70000000000L || registrationRequest.getPhoneNumber() >= 80000000000L) {
             throw new IllegalArgumentException("Phone number must start with 7");
         }
+
         Users newUser = new Users();
         newUser.setPhoneNumber(registrationRequest.getPhoneNumber());
 

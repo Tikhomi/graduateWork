@@ -27,15 +27,8 @@
         @Column(name = "phone_number")
         private Long phoneNumber;
 
-        //@Size(min = 3, max = 10)
-        //@Size(max = 20, min = 3, message = "{user.name.invalid}")
-        //@NotNull(message = "Please enter password")
-//        @Pattern(regexp="\\d{6}")
-//        @NotBlank(message = "Please enter a password")
-//        @NotEmpty(message = "Password cannot be empty")
-
-        @NotNull(message = "dfsdfsdf")
-        @Column(name = "password"/*, nullable = false*/)
+        @NotNull(message = "Please enter password")
+        @Column(name = "password")
         private String password;
 
         @Column(name = "role")

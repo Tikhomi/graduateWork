@@ -29,11 +29,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().and()
                 .authorizeRequests()
                 .antMatchers("/api/register").permitAll()
-                .antMatchers("/api/appointments", "/api/appointment/add", "/api/appointment/del/{id_appointment}")
+                .antMatchers("/api/appointments", "/api/appointment/add", "/api/appointment/del/{id_appointment}"
+                        , "/api/reports/generateAllExcel", "/api/reports/generateLastMonthReport"
+                        , "/api/reports/generateLastYearReport", "/api/payment/add"
+                        , "/api/payment/del/{id_payment}", "/api/service/add", "/api/service/del/{id_service}")
                 .hasRole("ADMIN")
-                .antMatchers("/api/appointment/{id_appointment}", "/api/payments", "/api/payment/add", "/api/payment/del/{id_payment}")
+
+                .antMatchers("/api/appointment/{id_appointment}", "/api/payments")
                 .hasAnyRole("ADMIN", "DOCTOR", "PATIENT")
-                .antMatchers("/api/services", "/api/service/add", "/api/service/del/{id_service}", "/api/service/{id_service}")
+
+                .antMatchers("/api/services", "/api/service/{id_service}")//добавить сюда еще список врачей
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -47,9 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("SELECT phone_number, password, 1 FROM users WHERE phone_number = ?")
-                .authoritiesByUsernameQuery("SELECT phone_number, role FROM users WHERE phone_number = ?")
+                .usersByUsernameQuery("SELECT phone_number, password, 1 FROM users WHERE CAST(phone_number AS VARCHAR) = ?")
+                .authoritiesByUsernameQuery("SELECT phone_number, role FROM users WHERE CAST(phone_number AS VARCHAR) = ?")
                 .passwordEncoder(passwordEncoder());
     }
 

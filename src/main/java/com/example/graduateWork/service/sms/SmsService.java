@@ -1,4 +1,4 @@
-package com.example.graduateWork.service;
+package com.example.graduateWork.service.sms;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

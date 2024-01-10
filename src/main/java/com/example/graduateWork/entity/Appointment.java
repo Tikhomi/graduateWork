@@ -20,10 +20,10 @@ public class Appointment {
     private Long idAppointment;
 
     @Column(name = "dt_rec")
-    private Date dt_rec;
+    private Date dtRec;
 
     @Column(name = "dt_ap")
-    private Date dt_ap;
+    private Date dtAp;
 
     @Column(name = "description")
     private String description;
