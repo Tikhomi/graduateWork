@@ -1,7 +1,7 @@
 package com.example.graduateWork.service;
 
 import com.example.graduateWork.dto.UsersDTO;
-import com.example.graduateWork.entity.RegistrationRequest;
+import com.example.graduateWork.entity.registration.RegistrationRequest;
 import com.example.graduateWork.entity.Role;
 import com.example.graduateWork.entity.Users;
 import com.example.graduateWork.repository.UsersRepository;
