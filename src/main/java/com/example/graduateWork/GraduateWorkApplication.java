@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 		"com.example.graduateWork.controller.common",
 		"com.example.graduateWork.service",
 		"com.example.graduateWork.repository"})
-@ComponentScan(basePackages = {"com.example.graduateWork.main"})
+@ComponentScan(basePackages = {"com.example.graduateWork"})
 public class GraduateWorkApplication {
 
 	public static void main(String[] args) {

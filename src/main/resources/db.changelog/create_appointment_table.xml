@@ -1,30 +1,110 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet id="create_appointment_table" author="postgres">
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<databaseChangeLog-->
+<!--        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"-->
+<!--        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-->
+<!--                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">-->
+<!--    <changeSet id="create_appointment_table" author="postgres">-->
+<!--        <createTable tableName="appointment">-->
+<!--            <column autoIncrement="true" name="id_appointment" type="bigint">-->
+<!--                <constraints primaryKey="true"/>-->
+<!--            </column>-->
+<!--            <column name="dt_rec" type="DATE"/>-->
+
+<!--            <column name="dt_ap" type="DATE"/>-->
+
+<!--            <column name="description" type="varchar(600)"/>-->
+
+<!--            <column name="id_client" type="bigint">-->
+<!--                <constraints foreignKeyName="fk_users_1" referencedTableName="users" referencedColumnNames="id_user"/>-->
+<!--            </column>-->
+<!--            <column name="id_doctor" type="bigint">-->
+<!--                <constraints foreignKeyName="fk_users_2" referencedTableName="users" referencedColumnNames="id_user"/>-->
+<!--            </column>-->
+<!--            <column name="id_status" type="bigint">-->
+<!--                <constraints foreignKeyName="fk_status_1" referencedTableName="status_dic" referencedColumnNames="id_status"/>-->
+<!--            </column>-->
+<!--            <column name="id_service" type="bigint">-->
+<!--                <constraints foreignKeyName="fk_service_1" referencedTableName="services" referencedColumnNames="id_service"/>-->
+<!--            </column>-->
+
+<!--        </createTable>-->
+<!--    </changeSet>-->
+<!--</databaseChangeLog>-->
+<!--<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"-->
+<!--                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-->
+<!--                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">-->
+
+<!--    &lt;!&ndash; Создание таблицы appointment &ndash;&gt;-->
+<!--    <changeSet id="createAppointmentTable" author="yourName">-->
+<!--        <createTable tableName="appointment">-->
+<!--            <column name="id_appointment" type="BIGINT">-->
+<!--                <constraints primaryKey="true" nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="dt_rec" type="DATE"/>-->
+<!--            <column name="dt_ap" type="DATE"/>-->
+<!--            <column name="description" type="VARCHAR(255)"/>-->
+<!--            <column name="user_doc_id_user" type="BIGINT"/>-->
+<!--            <column name="user_cl_id_user" type="BIGINT"/>-->
+<!--            <column name="status_id_status" type="BIGINT"/>-->
+<!--            <column name="service_id_service" type="BIGINT"/>-->
+<!--        </createTable>-->
+
+<!--        &lt;!&ndash; Ограничения для внешних ключей &ndash;&gt;-->
+<!--        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="user_doc_id_user"-->
+<!--                                 constraintName="fk_user_doc" referencedTableName="users"-->
+<!--                                 referencedColumnNames="id_user" onDelete="CASCADE"/>-->
+<!--        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="user_cl_id_user"-->
+<!--                                 constraintName="fk_user_cl" referencedTableName="users"-->
+<!--                                 referencedColumnNames="id_user" onDelete="CASCADE"/>-->
+<!--        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="status_id_status"-->
+<!--                                 constraintName="fk_status" referencedTableName="status_dic"-->
+<!--                                 referencedColumnNames="id_status" onDelete="CASCADE"/>-->
+<!--        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="service_id_service"-->
+<!--                                 constraintName="fk_service" referencedTableName="services"-->
+<!--                                 referencedColumnNames="id_service" onDelete="CASCADE"/>-->
+<!--    </changeSet>-->
+
+<!--</databaseChangeLog>-->
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Создание таблицы appointment -->
+    <changeSet id="createAppointmentTable" author="yourName">
         <createTable tableName="appointment">
-            <column autoIncrement="true" name="id_appointment" type="bigint">
-                <constraints primaryKey="true"/>
+            <column name="id_appointment" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="dt_rec" type="DATE"/>
-
             <column name="dt_ap" type="DATE"/>
-
-            <column name="description" type="varchar(600)"/>
-
-            <column name="id_client" type="bigint">
-                <constraints foreignKeyName="fk_users_1" referencedTableName="users" referencedColumnNames="id_user"/>
-            </column>
-            <column name="id_doctor" type="bigint">
-                <constraints foreignKeyName="fk_users_2" referencedTableName="users" referencedColumnNames="id_user"/>
-            </column>
-            <column name="id_status" type="bigint">
-                <constraints foreignKeyName="fk_status_1" referencedTableName="status_dic" referencedColumnNames="id_status"/>
-            </column>
-
+            <column name="description" type="VARCHAR(255)"/>
+            <!-- Добавлены столбцы для внешних ключей -->
+            <column name="id_user_info_doc" type="BIGINT"/>
+            <column name="id_user_info_cl" type="BIGINT"/>
+            <column name="id_status" type="BIGINT"/>
+            <column name="id_service" type="BIGINT"/>
         </createTable>
     </changeSet>
+
+    <!-- Добавление внешних ключей в таблицу appointment -->
+    <changeSet id="addForeignKeysToAppointment" author="yourName">
+        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="id_user_info_doc"
+                                 constraintName="fk_user_info_doc" referencedTableName="user_info"
+                                 referencedColumnNames="id_user_info" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="id_user_info_cl"
+                                 constraintName="fk_user_info_cl" referencedTableName="user_info"
+                                 referencedColumnNames="id_user_info" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="id_status"
+                                 constraintName="fk_status" referencedTableName="status_dic"
+                                 referencedColumnNames="id_status" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="id_service"
+                                 constraintName="fk_service" referencedTableName="services"
+                                 referencedColumnNames="id_service" onDelete="CASCADE"/>
+    </changeSet>
+
 </databaseChangeLog>
+
+
