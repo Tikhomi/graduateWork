@@ -4,7 +4,7 @@
                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <!-- Создание таблицы payment -->
-    <changeSet id="createPaymentTable" author="yourName">
+    <changeSet id="createPaymentTable" author="Valeriya">
         <createTable tableName="payment">
             <column name="id_payment" type="BIGINT">
                 <constraints primaryKey="true" nullable="false"/>

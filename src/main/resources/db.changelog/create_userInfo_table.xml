@@ -4,7 +4,7 @@
                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <!-- Создание таблицы user_info -->
-    <changeSet id="createUserInfoTable" author="yourName">
+    <changeSet id="createUserInfoTable" author="Valeriya">
         <createTable tableName="user_info">
             <column name="id_user_info" type="BIGINT">
                 <constraints primaryKey="true" nullable="false"/>

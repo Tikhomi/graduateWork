@@ -4,7 +4,7 @@
                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <!-- Создание таблицы appointment -->
-    <changeSet id="createAppointmentTable" author="yourName">
+    <changeSet id="createAppointmentTable" author="Valeriya">
         <createTable tableName="appointment">
             <column name="id_appointment" type="BIGINT">
                 <constraints primaryKey="true" nullable="false"/>
@@ -21,7 +21,7 @@
     </changeSet>
 
     <!-- Добавление внешних ключей в таблицу appointment -->
-    <changeSet id="addForeignKeysToAppointment" author="yourName">
+    <changeSet id="addForeignKeysToAppointment" author="Valeriya">
         <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="id_user_info_doc"
                                  constraintName="fk_user_info_doc" referencedTableName="user_info"
                                  referencedColumnNames="id_user_info" onDelete="CASCADE"/>
