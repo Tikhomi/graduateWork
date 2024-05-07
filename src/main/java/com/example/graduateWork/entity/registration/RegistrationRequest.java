@@ -1,4 +1,4 @@
-package com.example.graduateWork.entity;
+package com.example.graduateWork.entity.registration;
 
 public class RegistrationRequest {
 

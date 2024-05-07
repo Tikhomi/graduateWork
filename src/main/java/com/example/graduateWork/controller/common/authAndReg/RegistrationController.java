@@ -1,6 +1,6 @@
-package com.example.graduateWork.controller.common;
+package com.example.graduateWork.controller.common.authAndReg;
 
-import com.example.graduateWork.entity.RegistrationRequest;
+import com.example.graduateWork.entity.registration.RegistrationRequest;
 import com.example.graduateWork.service.UsersService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

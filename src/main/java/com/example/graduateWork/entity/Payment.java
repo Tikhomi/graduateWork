@@ -26,7 +26,8 @@ public class Payment {
     @Column(name = "cost_pay")
     private int costPay;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAppointment")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_appointment")
     private List<Appointment> appointment;
 
 }

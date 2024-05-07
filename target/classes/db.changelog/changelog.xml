@@ -8,11 +8,10 @@
     <include file="create_users_table.xml" relativeToChangelogFile="true"/>
     <include file="create_statusDic_table.xml" relativeToChangelogFile="true"/>
     <include file="create_specificationDic_table.xml" relativeToChangelogFile="true"/>
-    <include file="create_role_table.xml" relativeToChangelogFile="true"/>
     <include file="create_userType_table.xml" relativeToChangelogFile="true"/>
-    <include file="create_appointment_table.xml" relativeToChangelogFile="true"/>
     <include file="create_services_table.xml" relativeToChangelogFile="true"/>
-    <include file="create_payment_table.xml" relativeToChangelogFile="true"/>
     <include file="create_userInfo_table.xml" relativeToChangelogFile="true"/>
+    <include file="create_appointment_table.xml" relativeToChangelogFile="true"/>
+    <include file="create_payment_table.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

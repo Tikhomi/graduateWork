@@ -28,12 +28,19 @@ public class Appointment {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_user")
-    private List<Users> users_doc;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_user_info")
+    private List<UserInfo> users_doc;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_user")
-    private List<Users> users_cl;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_user_info")
+    private List<UserInfo> users_cl;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_status")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_status")
     private List<StatusDic> status;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_service")
+    private List<Services> services;
 }

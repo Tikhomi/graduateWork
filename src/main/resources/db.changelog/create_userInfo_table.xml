@@ -1,27 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet id="create_userInfo_table" author="postgres">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- поля user_info -->
+    <changeSet id="createUserInfoTable" author="Valeriya">
         <createTable tableName="user_info">
-            <column autoIncrement="true" name="id_user_info" type="bigint">
-                <constraints primaryKey="true"/>
+            <column name="id_user_info" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
             </column>
-
-            <column name="name" type="varchar(100)"/>
-            <column name="lastname" type="varchar(100)"/>
-            <column name="patronymic" type="varchar(100)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="lastname" type="VARCHAR(255)"/>
+            <column name="patronymic" type="VARCHAR(255)"/>
             <column name="birthday" type="DATE"/>
-
-            <column name="id_user" type="bigint">
-                <constraints foreignKeyName="fk_users_1" referencedTableName="users" referencedColumnNames="id_user"/>
-            </column>
-            <column name="id_specification" type="bigint">
-                <constraints foreignKeyName="fk_specification_1" referencedTableName="specification_dic" referencedColumnNames="id_specification"/>
-            </column>
+            <column name="id_user" type="BIGINT"/>
+            <column name="id_specification" type="BIGINT"/>
+            <column name="id_user_type" type="BIGINT"/>
         </createTable>
     </changeSet>
+
+    <!-- внешние ключи -->
+    <changeSet id="addForeignKeysToUserInfo" author="yourName">
+        <addForeignKeyConstraint baseTableName="user_info" baseColumnNames="id_user"
+                                 constraintName="fk_users" referencedTableName="users"
+                                 referencedColumnNames="id_user" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="user_info" baseColumnNames="id_specification"
+                                 constraintName="fk_specification_dic" referencedTableName="specification_dic"
+                                 referencedColumnNames="id_specification" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="user_info" baseColumnNames="id_user_type"
+                                 constraintName="fk_user_type" referencedTableName="user_type"
+                                 referencedColumnNames="id_user_type" onDelete="CASCADE"/>
+    </changeSet>
+
+<!--    &lt;!&ndash; Добавляем индексы для улучшения производительности внешних ключей &ndash;&gt;-->
+<!--    <changeSet id="addIndexesToUserInfo" author="yourName">-->
+<!--        <createIndex tableName="user_info" indexName="idx_fk_users" unique="false">-->
+<!--            <column name="id_user_info"/>-->
+<!--        </createIndex>-->
+<!--        <createIndex tableName="user_info" indexName="idx_fk_specification_dic" unique="false">-->
+<!--            <column name="id_user_info"/>-->
+<!--        </createIndex>-->
+<!--    </changeSet>-->
+
 </databaseChangeLog>
 

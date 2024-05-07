@@ -32,11 +32,16 @@ public class UserInfo {
     @Column(name = "birthday")
     private Date birthday;
 
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_user")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_user")
     private List<Users> users;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_specification")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_specification")
     private List<SpecificationDic> specificationDics;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_user_type")
+    private List<UserType> userTypes;
 
 }
