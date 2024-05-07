@@ -54,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .usersByUsernameQuery("SELECT phone_number, password, 1 FROM users WHERE CAST(phone_number AS VARCHAR) = ?")
                 .authoritiesByUsernameQuery("SELECT phone_number, role FROM users WHERE CAST(phone_number AS VARCHAR) = ?")
-                .passwordEncoder(passwordEncoder());
+                .passwordEncoder(passwordEncoder()); //проверка
     }
 
 
