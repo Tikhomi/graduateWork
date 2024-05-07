@@ -73,15 +73,16 @@ public class UsersService {
         }
 
         Users newUser = new Users();
+
         newUser.setPhoneNumber(registrationRequest.getPhoneNumber());
 
         System.out.println("Введенный номер телефона: " + registrationRequest.getPhoneNumber());
         newUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
         System.out.println("Введенный пароль: " + registrationRequest.getPassword());
         newUser.setRole(Role.ROLE_PATIENT);
-
+        System.out.println("сейчас будет сохранение");
         usersRepository.save(newUser);
-
+        System.out.println("сразу после сохранения");
         //smsService.sendSms(registrationRequest.getPhoneNumber());
     }
 }

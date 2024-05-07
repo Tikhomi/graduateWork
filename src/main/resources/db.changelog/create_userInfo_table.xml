@@ -3,7 +3,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <!-- Создание таблицы user_info -->
+    <!-- поля user_info -->
     <changeSet id="createUserInfoTable" author="Valeriya">
         <createTable tableName="user_info">
             <column name="id_user_info" type="BIGINT">
@@ -13,28 +13,34 @@
             <column name="lastname" type="VARCHAR(255)"/>
             <column name="patronymic" type="VARCHAR(255)"/>
             <column name="birthday" type="DATE"/>
+            <column name="id_user" type="BIGINT"/>
+            <column name="id_specification" type="BIGINT"/>
+            <column name="id_user_type" type="BIGINT"/>
         </createTable>
     </changeSet>
 
-    <!-- Добавление внешних ключей -->
+    <!-- внешние ключи -->
     <changeSet id="addForeignKeysToUserInfo" author="yourName">
-        <addForeignKeyConstraint baseTableName="user_info" baseColumnNames="id_user_info"
+        <addForeignKeyConstraint baseTableName="user_info" baseColumnNames="id_user"
                                  constraintName="fk_users" referencedTableName="users"
                                  referencedColumnNames="id_user" onDelete="CASCADE"/>
-        <addForeignKeyConstraint baseTableName="user_info" baseColumnNames="id_user_info"
+        <addForeignKeyConstraint baseTableName="user_info" baseColumnNames="id_specification"
                                  constraintName="fk_specification_dic" referencedTableName="specification_dic"
                                  referencedColumnNames="id_specification" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="user_info" baseColumnNames="id_user_type"
+                                 constraintName="fk_user_type" referencedTableName="user_type"
+                                 referencedColumnNames="id_user_type" onDelete="CASCADE"/>
     </changeSet>
 
-    <!-- Добавляем индексы для улучшения производительности внешних ключей -->
-    <changeSet id="addIndexesToUserInfo" author="yourName">
-        <createIndex tableName="user_info" indexName="idx_fk_users" unique="false">
-            <column name="id_user_info"/>
-        </createIndex>
-        <createIndex tableName="user_info" indexName="idx_fk_specification_dic" unique="false">
-            <column name="id_user_info"/>
-        </createIndex>
-    </changeSet>
+<!--    &lt;!&ndash; Добавляем индексы для улучшения производительности внешних ключей &ndash;&gt;-->
+<!--    <changeSet id="addIndexesToUserInfo" author="yourName">-->
+<!--        <createIndex tableName="user_info" indexName="idx_fk_users" unique="false">-->
+<!--            <column name="id_user_info"/>-->
+<!--        </createIndex>-->
+<!--        <createIndex tableName="user_info" indexName="idx_fk_specification_dic" unique="false">-->
+<!--            <column name="id_user_info"/>-->
+<!--        </createIndex>-->
+<!--    </changeSet>-->
 
 </databaseChangeLog>
 
