@@ -26,7 +26,7 @@ public class AppointmentService {
     }
 
     public AppointmentDTO getAppointmentById(Long idAppointment) {
-        Appointment appointment= appointmentRepository.getAppointmentByIdAppointment(idAppointment);
+        Appointment appointment = appointmentRepository.getAppointmentByIdAppointment(idAppointment);
         if (appointment != null) {
             return convertToDTO(appointment);
         }
@@ -44,7 +44,7 @@ public class AppointmentService {
 
     private AppointmentDTO convertToDTO(Appointment appointment) {
         return new AppointmentDTO(appointment.getDtRec(), appointment.getDtAp(),
-                appointment.getDescription(), appointment.getUsers_doc(), appointment.getUsers_cl());
+                appointment.getDescription(), appointment.getUser_doc(), appointment.getUser_cl());
 
     }
 }

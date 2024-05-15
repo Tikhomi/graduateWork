@@ -46,8 +46,8 @@ public class ReportService {
             dataRow.createCell(1).setCellValue(appointment.getDtRec().toString());
             dataRow.createCell(2).setCellValue(appointment.getDtAp().toString());
             dataRow.createCell(3).setCellValue(appointment.getDescription());
-            dataRow.createCell(4).setCellValue(appointment.getUsers_cl().toString());
-            dataRow.createCell(5).setCellValue(appointment.getUsers_doc().toString());
+            dataRow.createCell(4).setCellValue(appointment.getUser_cl().toString());
+            dataRow.createCell(5).setCellValue(appointment.getUser_doc().toString());
             dataRow.createCell(6).setCellValue(appointment.getStatus().toString());
 
             dataRowIndex++;
@@ -88,8 +88,8 @@ public class ReportService {
             dataRow.createCell(1).setCellValue(appointment.getDtRec().toString());
             dataRow.createCell(2).setCellValue(appointment.getDtAp().toString());
             dataRow.createCell(3).setCellValue(appointment.getDescription());
-            dataRow.createCell(4).setCellValue(appointment.getUsers_cl().toString());
-            dataRow.createCell(5).setCellValue(appointment.getUsers_doc().toString());
+            dataRow.createCell(4).setCellValue(appointment.getUser_cl().toString());
+            dataRow.createCell(5).setCellValue(appointment.getUser_doc().toString());
             dataRow.createCell(6).setCellValue(appointment.getStatus().toString());
 
             dataRowIndex++;
@@ -133,8 +133,8 @@ public class ReportService {
             dataRow.createCell(1).setCellValue(appointment.getDtRec().toString());
             dataRow.createCell(2).setCellValue(appointment.getDtAp().toString());
             dataRow.createCell(3).setCellValue(appointment.getDescription());
-            dataRow.createCell(4).setCellValue(appointment.getUsers_cl().toString());
-            dataRow.createCell(5).setCellValue(appointment.getUsers_doc().toString());
+            dataRow.createCell(4).setCellValue(appointment.getUser_cl().toString());
+            dataRow.createCell(5).setCellValue(appointment.getUser_doc().toString());
             dataRow.createCell(6).setCellValue(appointment.getStatus().toString());
             dataRowIndex++;
         }

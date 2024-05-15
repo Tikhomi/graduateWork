@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-@CrossOrigin(origins = "http://127.0.0.1:3000")
+@RequestMapping("/appointment")
+//@CrossOrigin(origins = "http://127.0.0.1:3000")
 public class AppointmentController {
     private final AppointmentService appointmentService;
 
@@ -20,13 +20,13 @@ public class AppointmentController {
         this.appointmentService = appointmentService;
     }
 
-    @GetMapping("/appointments")
+    @GetMapping("/all")
     public ResponseEntity<List<AppointmentDTO>> getAllAppointments() {
         List<AppointmentDTO> appointmentDTO = appointmentService.getAllAppointments();
         return ResponseEntity.ok(appointmentDTO);
     }
 
-    @GetMapping("/appointment/{idAppointment}")
+    @GetMapping("/get/{idAppointment}")
     public ResponseEntity<AppointmentDTO> getAppointmentById(@PathVariable("idAppointment") Long idAppointment) {
         AppointmentDTO appointmentS = appointmentService.getAppointmentById(idAppointment);
         if (appointmentS != null) {
@@ -36,12 +36,12 @@ public class AppointmentController {
         }
     }
 
-    @PostMapping("/appointment/add")
+    @PostMapping("/add")
     public void addAppointment(@RequestBody Appointment appointment) {
         appointmentService.save(appointment);
     }
 
-    @DeleteMapping("/appointment/del/{idAppointment}")
+    @DeleteMapping("/del/{idAppointment}")
     public ResponseEntity<Void> deleteAppointment(@PathVariable("idAppointment") Long idAppointment) {
         appointmentService.delete(idAppointment);
         return ResponseEntity.noContent().build();

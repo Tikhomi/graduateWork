@@ -14,7 +14,7 @@
             <column name="cost_pay" type="INT"/>
 
             <column name="id_appointment" type="bigint">
-                <constraints foreignKeyName="fk_appointment_1" referencedTableName="appointment" referencedColumnNames="id_appointment"/>
+                <constraints foreignKeyName="fk_appointment" referencedTableName="appointment" referencedColumnNames="id_appointment"/>
             </column>
 
         </createTable>

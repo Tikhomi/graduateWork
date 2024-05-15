@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.DoubleStream;
 
 @Entity
 @Table(name = "appointment")
@@ -28,12 +29,20 @@ public class Appointment {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_user")
-    private List<Users> users_doc;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name =  "id_doctor")
+    private Doctor user_doc;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_user")
-    private List<Users> users_cl;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name =  "id_client")
+    private Client user_cl;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id_status")
-    private List<StatusDic> status;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_status")
+    private StatusDic status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_service")
+    private Services id_service;
+
 }

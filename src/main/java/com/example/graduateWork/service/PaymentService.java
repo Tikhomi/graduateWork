@@ -44,10 +44,10 @@ public class PaymentService {
     }
 
     private PaymentDTO convertToDTO(Payment payment) {
-        List<Appointment> appointmentList = payment.getAppointment()
-                .stream()
-                .collect(Collectors.toList());
-        return new PaymentDTO(payment.getDt_pay(), payment.getCostPay(), appointmentList);
+        Appointment appointment = payment.getAppointment();
+        return new PaymentDTO(payment.getDt_pay(), payment.getCostPay(), appointment);
     }
+
+
 
 }

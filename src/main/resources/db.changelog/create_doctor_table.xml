@@ -1,0 +1,33 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+
+    <!-- Создание таблицы doctor -->
+    <changeSet id="createDoctorTable" author="yourName">
+        <createTable tableName="doctor">
+            <column name="id_doctor" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name_doc" type="VARCHAR(100)"/>
+            <column name="lastname_doc" type="VARCHAR(100)"/>
+            <column name="patronymic_doc" type="VARCHAR(255)"/>
+            <column name="birthday_doc" type="DATE"/>
+            <column name="experience" type="INT"/>
+            <!-- Добавлены столбцы для внешних ключей -->
+            <column name="id_user" type="BIGINT"/>
+            <column name="id_specification" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Добавление внешних ключей в таблицу appointment -->
+    <changeSet id="addForeignKeysToDoctor" author="yourName">
+        <addForeignKeyConstraint baseTableName="doctor" baseColumnNames="id_user"
+                                 constraintName="fk_user" referencedTableName="users"
+                                 referencedColumnNames="id_user" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="doctor" baseColumnNames="id_specification"
+                                 constraintName="fk_specification" referencedTableName="specification_dic"
+                                 referencedColumnNames="id_specification" onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>
