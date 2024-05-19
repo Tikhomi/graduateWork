@@ -7,8 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value ="/api/register", method = { RequestMethod.GET, RequestMethod.POST })
-@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/appointment")
+//@RequestMapping(value ="/api/register", method = { RequestMethod.GET, RequestMethod.POST })
+//@CrossOrigin(origins = "http://localhost:3000")
 public class RegistrationController {
 
     private final UsersService userService;

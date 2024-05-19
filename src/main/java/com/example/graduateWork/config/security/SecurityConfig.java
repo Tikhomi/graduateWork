@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/appointment/{id_appointment}", "/api/payments")
                 .hasAnyRole("ADMIN", "DOCTOR", "PATIENT")
 
-                .antMatchers("/api/services", "/api/service/{id_service}")//добавить сюда еще список врачей
+                .antMatchers("/api/services", "/api/service/{id_service}", "/doctor/add")//добавить сюда еще список врачей
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
