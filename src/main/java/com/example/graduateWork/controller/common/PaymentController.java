@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-@CrossOrigin(origins = "http://127.0.0.1:3000")
+@RequestMapping("/payment")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PaymentController {
     private final PaymentService paymentService;
 
@@ -20,30 +20,30 @@ public class PaymentController {
         this.paymentService = paymentService;
     }
 
-    @GetMapping("/payments")
-    public ResponseEntity<List<PaymentDTO>> getAllPayment() {
-        List<PaymentDTO> paymentDTO = paymentService.getAllPayment();
-        return ResponseEntity.ok(paymentDTO);
+    @GetMapping("/all")
+    public ResponseEntity<List<PaymentDTO>> getAllPayments() {
+        List<PaymentDTO> paymentDTOs = paymentService.getAllPayments();
+        return ResponseEntity.ok(paymentDTOs);
     }
 
-    @GetMapping("/payment/{idPayment}")
-    public ResponseEntity<PaymentDTO> getAppointmentById(@PathVariable("idPayment") Long idPayment) {
-        PaymentDTO payments = paymentService.getPaymentById(idPayment);
-        if (payments != null) {
-            return ResponseEntity.ok(payments);
+    @GetMapping("/get/{idPayment}")
+    public ResponseEntity<PaymentDTO> getPaymentById(@PathVariable("idPayment") Long idPayment) {
+        PaymentDTO paymentDTO = paymentService.getPaymentById(idPayment);
+        if (paymentDTO != null) {
+            return ResponseEntity.ok(paymentDTO);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @PostMapping("/payment/add")
-    public void addAppointment(@RequestBody Payment payment) {
-        paymentService.save(payment);
+    @PostMapping("/add")
+    public ResponseEntity<PaymentDTO> addPayment(@RequestBody PaymentDTO paymentDTO) {
+        PaymentDTO savedPaymentDTO = paymentService.save(paymentDTO);
+        return ResponseEntity.ok(savedPaymentDTO);
     }
 
-
-    @DeleteMapping("/payment/del/{idPayment}")
-    public ResponseEntity<Void> deleteAppointment(@PathVariable("idPayment") Long idPayment) {
+    @DeleteMapping("/del/{idPayment}")
+    public ResponseEntity<Void> deletePayment(@PathVariable("idPayment") Long idPayment) {
         paymentService.delete(idPayment);
         return ResponseEntity.noContent().build();
     }

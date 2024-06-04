@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-@CrossOrigin(origins = "http://127.0.0.1:3000")
+@RequestMapping(value ="/service", method = { RequestMethod.GET, RequestMethod.POST })
+@CrossOrigin(origins = "http://localhost:3000/ServiceF")
 public class ServicesController {
     private final ServicesService servicesService;
 
@@ -19,13 +19,13 @@ public class ServicesController {
         this.servicesService = servicesService;
     }
 
-    @GetMapping("/services")
+    @GetMapping("/all")
     public ResponseEntity<List<Services>> getAllServices() {
         List<Services> services = servicesService.getAllAppointments();
         return ResponseEntity.ok(services);
     }
 
-    @GetMapping("/service/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Services> getAppointmentById(@PathVariable("idService") Long idService) {
         Services service = servicesService.getServiceById(idService);
         if (service != null) {
@@ -35,13 +35,13 @@ public class ServicesController {
         }
     }
 
-    @PostMapping("/service/add")
+    @PostMapping("/add")
     public void addAppointment(@RequestBody Services services) {
         servicesService.save(services);
     }
 
 
-    @DeleteMapping("/services/del/{id_service}")
+    @DeleteMapping("/del/{id_service}")
     public ResponseEntity<Void> deleteAppointment(@PathVariable("id_service") Long id_service) {
         servicesService.delete(id_service);
         return ResponseEntity.noContent().build();

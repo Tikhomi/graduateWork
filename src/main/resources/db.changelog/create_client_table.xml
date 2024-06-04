@@ -6,7 +6,7 @@
     <!-- Создание таблицы doctor -->
     <changeSet id="createClientTable" author="yourName">
         <createTable tableName="client">
-            <column name="id_client" type="BIGINT">
+            <column name="id_client" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name_cl" type="VARCHAR(100)"/>

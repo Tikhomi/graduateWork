@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/register").permitAll()
                 .antMatchers("/api/appointments", "/api/appointment/add", "/api/appointment/del/{id_appointment}"
-                        , "/api/reports/generateAllExcel", "/api/reports/generateLastMonthReport"
+                        , "/api/reports/generateAllExcel"
                         , "/api/reports/generateLastYearReport", "/api/payment/add"
                         , "/api/payment/del/{id_payment}", "/api/service/add", "/api/service/del/{id_service}")
                 .hasRole("ADMIN")
@@ -38,7 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/appointment/{id_appointment}", "/api/payments")
                 .hasAnyRole("ADMIN", "DOCTOR", "PATIENT")
 
-                .antMatchers("/api/services", "/api/service/{id_service}", "/doctor/add")//добавить сюда еще список врачей
+                .antMatchers("/api/services", "/api/service/{id_service}", "/doctor/add", "/doctor/all", "/appointment/add", "/service/add",
+                        "/payment/add","/doctor/del/{idDoctor}", "/client/add", "/api/reports/generateLastMonthReport")//добавить сюда еще список врачей
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

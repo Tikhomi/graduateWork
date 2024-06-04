@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
-    Doctor getDoctorByIdDoctor (Long idDoctor);
+    Doctor getDoctorByIdDoctor(Long idDoctor);
 }

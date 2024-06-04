@@ -6,7 +6,7 @@
     <!-- Создание таблицы appointment -->
     <changeSet id="createAppointmentTable" author="yourName">
         <createTable tableName="appointment">
-            <column name="id_appointment" type="BIGINT">
+            <column name="id_appointment" type="BIGINT"  autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="dt_rec" type="DATE"/>
