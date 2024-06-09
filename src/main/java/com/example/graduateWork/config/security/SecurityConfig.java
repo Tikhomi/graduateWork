@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .cors().and()
                 .authorizeRequests()
-                .antMatchers("/api/register").permitAll()
+                .antMatchers("/api/register", "/api/login","/api/send-sms", "/api/verify-code").permitAll()
                 .antMatchers("/api/appointments", "/api/appointment/add", "/api/appointment/del/{id_appointment}"
                         , "/api/reports/generateAllExcel"
                         , "/api/reports/generateLastYearReport", "/api/payment/add"
@@ -38,8 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/appointment/{id_appointment}", "/api/payments")
                 .hasAnyRole("ADMIN", "DOCTOR", "PATIENT")
 
-                .antMatchers("/api/services", "/api/service/{id_service}", "/doctor/add", "/doctor/all", "/appointment/add", "/service/add",
-                        "/payment/add","/doctor/del/{idDoctor}", "/client/add", "/api/reports/generateLastMonthReport")//добавить сюда еще список врачей
+                .antMatchers("/api/services", "/api/service/{id_service}", "/doctor/add", "/doctor/all", "/appointment/add", "/appointment/all",
+                        "/service/add", "/appointment/del/{idAppointment}",
+                        "/payment/add","/doctor/del/{idDoctor}", "/client/add", "/api/reports/generateLastMonthReport", "/client/all", "/client/del/{idClient}"
+                            , "/payment/all", "/payment/del/{idPayment}", "/service/del/{id_service}", "/service/all")//добавить сюда еще список врачей
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -47,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/api/services")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login");
+                .logoutSuccessUrl("/api/login");
     }
 
     @Autowired

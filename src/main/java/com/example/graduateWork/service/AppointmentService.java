@@ -63,7 +63,7 @@ public class AppointmentService {
 
     private AppointmentDTO convertToDTO(Appointment appointment) {
         return new AppointmentDTO(appointment.getIdAppointment(),appointment.getDtRec(), appointment.getDtAp(),
-                appointment.getDescription(), appointment.getUser_doc(), appointment.getUser_cl(), appointment.getStatus());
+                appointment.getDescription(), appointment.getUserDoc(), appointment.getUserCl(), appointment.getStatus());
     }
 
 

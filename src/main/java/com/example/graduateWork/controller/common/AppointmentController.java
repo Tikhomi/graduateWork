@@ -60,12 +60,9 @@ public class AppointmentController {
         appointmentService.save(appointment);
     }
 
-
     @DeleteMapping("/del/{idAppointment}")
     public ResponseEntity<Void> deleteAppointment(@PathVariable("idAppointment") Long idAppointment) {
         appointmentService.delete(idAppointment);
         return ResponseEntity.noContent().build();
     }
-
-
 }

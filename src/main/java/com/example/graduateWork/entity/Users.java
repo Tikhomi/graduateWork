@@ -3,7 +3,6 @@
     import lombok.AllArgsConstructor;
     import lombok.Data;
     import lombok.NoArgsConstructor;
-    import org.hibernate.validator.constraints.NotEmpty;
 
     import javax.persistence.*;
     import javax.validation.Valid;
@@ -19,7 +18,7 @@
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id_user")
-        private Long id_user;
+        private Long idUser;
 
         @NotNull(message = "Please enter phone number")
         @DecimalMin(value = "10000000000", message = "Phone number must be exactly 11 digits")

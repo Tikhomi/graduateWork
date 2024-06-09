@@ -1,9 +1,8 @@
 package com.example.graduateWork.service;
 
 import com.example.graduateWork.dto.UsersDTO;
-import com.example.graduateWork.entity.RegistrationRequest;
-import com.example.graduateWork.entity.Role;
-import com.example.graduateWork.entity.Users;
+import com.example.graduateWork.entity.*;
+import com.example.graduateWork.repository.AppointmentRepository;
 import com.example.graduateWork.repository.UsersRepository;
 import com.example.graduateWork.service.sms.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,12 +19,14 @@ public class UsersService {
     private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
     private final SmsService smsService;
+    private final AppointmentRepository appointmentRepository;
 
     @Autowired
-    public UsersService(UsersRepository usersRepository, PasswordEncoder passwordEncoder, SmsService smsService) {
+    public UsersService(UsersRepository usersRepository, PasswordEncoder passwordEncoder, SmsService smsService, AppointmentRepository appointmentRepository) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
         this.smsService = smsService;
+        this.appointmentRepository = appointmentRepository;
     }
 
     public List<UsersDTO> getAllUserInfos() {
@@ -34,7 +36,7 @@ public class UsersService {
                 .collect(Collectors.toList());
     }
 
-    public UsersDTO findByPhoneNumber(int phoneNumber) {
+    public UsersDTO findByPhoneNumber(Long phoneNumber) {
         Users users = usersRepository.findByPhoneNumber(phoneNumber);
         if (users != null) {
             return convertToDTO(users);
@@ -52,10 +54,10 @@ public class UsersService {
     }
 
     private UsersDTO convertToDTO(Users users) {
-        return new UsersDTO(users.getId_user(), users.getPhoneNumber());
+        return new UsersDTO(users.getIdUser(), users.getPhoneNumber());
     }
 
-    public void registerUser(RegistrationRequest registrationRequest) {
+    public Users registerUser(RegistrationRequest registrationRequest) {
 
         //проверка пароля на его отсутствие
         if (registrationRequest.getPassword() == null || registrationRequest.getPassword().trim().isEmpty()) {
@@ -79,9 +81,17 @@ public class UsersService {
         newUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
         System.out.println("Введенный пароль: " + registrationRequest.getPassword());
         newUser.setRole(Role.ROLE_PATIENT);
+        Users savedUser = usersRepository.save(newUser);
+        smsService.sendSms(String.valueOf(registrationRequest.getPhoneNumber()));
+        return savedUser;
+    }
 
-        usersRepository.save(newUser);
-
-        //smsService.sendSms(registrationRequest.getPhoneNumber());
+    public Users authenticateUser(LoginRequest loginRequest) {
+        Users user = usersRepository.findByPhoneNumber(loginRequest.getPhoneNumber());
+        if (user != null && passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+            return user;
+        } else {
+            throw new IllegalArgumentException("Invalid phone number or password");
+        }
     }
 }

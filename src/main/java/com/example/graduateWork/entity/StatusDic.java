@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idStatus")
 public class StatusDic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

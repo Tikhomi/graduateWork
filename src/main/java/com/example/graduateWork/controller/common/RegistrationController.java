@@ -1,21 +1,24 @@
 package com.example.graduateWork.controller.common;
 
 import com.example.graduateWork.entity.RegistrationRequest;
+import com.example.graduateWork.entity.Users;
 import com.example.graduateWork.service.UsersService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
-//@RequestMapping("/register")
 @RequestMapping(value ="/api/register", method = { RequestMethod.GET, RequestMethod.POST })
 @CrossOrigin(origins = "http://localhost:3000")
 public class RegistrationController {
 
     private final UsersService userService;
 
-    public RegistrationController(UsersService usersService) {
-        this.userService = usersService;
+    public RegistrationController(UsersService userService) {
+        this.userService = userService;
     }
 
     @ExceptionHandler(Exception.class)
@@ -26,9 +29,11 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public ResponseEntity<String> registerUser(@RequestBody RegistrationRequest registrationRequest) {
-        userService.registerUser(registrationRequest);
-
-        return ResponseEntity.ok("Registration successful");
+    public ResponseEntity<Map<String, Object>> registerUser(@RequestBody RegistrationRequest registrationRequest) {
+        Users newUser = userService.registerUser(registrationRequest);
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Registration successful");
+        response.put("idUser", newUser.getIdUser());
+        return ResponseEntity.ok(response);
     }
 }

@@ -1,8 +1,6 @@
 package com.example.graduateWork.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,18 +31,22 @@ public class Appointment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name =  "id_doctor")
-    private Doctor user_doc;
+    @JsonIgnore
+    private Doctor userDoc;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name =  "id_client")
-    private Client user_cl;
+    @JsonIgnore
+    private Client userCl;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_status")
+    @JsonIgnore
     private StatusDic status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_service")
+    @JsonIgnore
     private Services service;
 
 }

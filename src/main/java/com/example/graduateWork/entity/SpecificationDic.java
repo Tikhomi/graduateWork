@@ -17,9 +17,9 @@ public class SpecificationDic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_specification")
-    private Long id_specification;
+    private Long idSpecification;
 
     @Column(name = "nm_specification")
-    private String nm_specification;
+    private String nmSpecification;
 
 }
