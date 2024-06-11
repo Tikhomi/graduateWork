@@ -41,7 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/services", "/api/service/{id_service}", "/doctor/add", "/doctor/all", "/appointment/add", "/appointment/all",
                         "/service/add", "/appointment/del/{idAppointment}",
                         "/payment/add","/doctor/del/{idDoctor}", "/client/add", "/api/reports/generateLastMonthReport", "/client/all", "/client/del/{idClient}"
-                            , "/payment/all", "/payment/del/{idPayment}", "/service/del/{id_service}", "/service/all")//добавить сюда еще список врачей
+                            , "/payment/all", "/payment/del/{idPayment}", "/service/del/{id_service}", "/service/all", "/user/get/{idUser}", "/appointment/last/{idUser}", "/user/all",
+                        "/client/getByUser/{idUser}")//добавить сюда еще список врачей
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

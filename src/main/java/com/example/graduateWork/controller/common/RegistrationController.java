@@ -31,6 +31,7 @@ public class RegistrationController {
     @PostMapping
     public ResponseEntity<Map<String, Object>> registerUser(@RequestBody RegistrationRequest registrationRequest) {
         Users newUser = userService.registerUser(registrationRequest);
+        System.out.println("Newly registered user ID: " + newUser.getIdUser());
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Registration successful");
         response.put("idUser", newUser.getIdUser());

@@ -29,11 +29,8 @@ public class UsersService {
         this.appointmentRepository = appointmentRepository;
     }
 
-    public List<UsersDTO> getAllUserInfos() {
-        List<Users> users = usersRepository.findAll();
-        return users.stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+    public List<Users> getAllUsers(){
+        return usersRepository.findAll();
     }
 
     public UsersDTO findByPhoneNumber(Long phoneNumber) {
@@ -43,7 +40,9 @@ public class UsersService {
         }
         return null;
     }
-
+    public Users findById(Long idUser) {
+        return usersRepository.findById(idUser).orElse(null);
+    }
     public Users save(Users users) {
         return usersRepository.save(users);
     }
@@ -80,7 +79,7 @@ public class UsersService {
         System.out.println("Введенный номер телефона: " + registrationRequest.getPhoneNumber());
         newUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
         System.out.println("Введенный пароль: " + registrationRequest.getPassword());
-        newUser.setRole(Role.ROLE_PATIENT);
+        newUser.setRole(Role.ROLE_CLIENT);
         Users savedUser = usersRepository.save(newUser);
         smsService.sendSms(String.valueOf(registrationRequest.getPhoneNumber()));
         return savedUser;

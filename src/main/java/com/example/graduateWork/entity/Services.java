@@ -1,14 +1,12 @@
 package com.example.graduateWork.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "services")
@@ -23,9 +21,16 @@ public class Services {
     private Long idService;
 
     @Column(name = "nm_service")
-    private String nm_service;
+    private String nmService;
 
     @Column(name = "cost_serv")
     private int costServ;
 
+    public String getName() {
+        return nmService;
+    }
+
+    public void setName(String nmService) {
+        this.nmService = nmService;
+    }
 }

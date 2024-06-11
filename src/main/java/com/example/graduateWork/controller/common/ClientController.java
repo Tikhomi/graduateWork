@@ -1,7 +1,9 @@
 package com.example.graduateWork.controller.common;
 
 import com.example.graduateWork.entity.Client;
+import com.example.graduateWork.entity.Users;
 import com.example.graduateWork.service.ClientService;
+import com.example.graduateWork.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +15,12 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000/ClientF")
 public class ClientController {
     private final ClientService clientService;
+    private final UsersService usersService;
 
     @Autowired
-    public ClientController(ClientService clientService) {
+    public ClientController(ClientService clientService, UsersService usersService) {
         this.clientService = clientService;
+        this.usersService = usersService;
     }
 
     @GetMapping("/all")

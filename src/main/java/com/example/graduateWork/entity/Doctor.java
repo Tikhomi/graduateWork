@@ -1,8 +1,5 @@
 package com.example.graduateWork.entity;
 
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,4 +41,73 @@ public class Doctor {
     @JoinColumn(name = "id_specification")
     private SpecificationDic specificationDics;
 
+    // Correcting the getters and setters
+    public Long getIdDoctor() {
+        return idDoctor;
+    }
+
+    public void setIdDoctor(Long idDoctor) {
+        this.idDoctor = idDoctor;
+    }
+
+    public String getNameDoc() {
+        return nameDoc;
+    }
+
+    public void setNameDoc(String nameDoc) {
+        this.nameDoc = nameDoc;
+    }
+
+    public String getLastnameDoc() {
+        return lastnameDoc;
+    }
+
+    public void setLastnameDoc(String lastnameDoc) {
+        this.lastnameDoc = lastnameDoc;
+    }
+
+    public String getPatronymicDoc() {
+        return patronymicDoc;
+    }
+
+    public void setPatronymicDoc(String patronymicDoc) {
+        this.patronymicDoc = patronymicDoc;
+    }
+
+    public Date getBirthdayDoc() {
+        return birthdayDoc;
+    }
+
+    public void setBirthdayDoc(Date birthdayDoc) {
+        this.birthdayDoc = birthdayDoc;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public SpecificationDic getSpecificationDics() {
+        return specificationDics;
+    }
+
+    public void setSpecificationDics(SpecificationDic specificationDics) {
+        this.specificationDics = specificationDics;
+    }
+
+    // Additional method for getting specialization name
+    public String getSpecializationName() {
+        return specificationDics != null ? specificationDics.getName() : null;
+    }
 }

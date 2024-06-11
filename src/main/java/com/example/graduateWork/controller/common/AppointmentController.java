@@ -1,6 +1,7 @@
 package com.example.graduateWork.controller.common;
 
 import com.example.graduateWork.dto.AppointmentDTO;
+import com.example.graduateWork.dto.SimpleAppointmentDTO;
 import com.example.graduateWork.entity.*;
 import com.example.graduateWork.repository.ClientRepository;
 import com.example.graduateWork.repository.DoctorRepository;
@@ -64,5 +65,16 @@ public class AppointmentController {
     public ResponseEntity<Void> deleteAppointment(@PathVariable("idAppointment") Long idAppointment) {
         appointmentService.delete(idAppointment);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/last/{idUser}")
+    public ResponseEntity<SimpleAppointmentDTO> getLastAppointmentForUser(@PathVariable("idUser") Long idUser) {
+        SimpleAppointmentDTO lastAppointment = appointmentService.getLastAppointmentForUser(idUser);
+
+        if (lastAppointment != null) {
+            return ResponseEntity.ok(lastAppointment);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

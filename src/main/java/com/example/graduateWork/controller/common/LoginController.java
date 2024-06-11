@@ -31,6 +31,7 @@ public class LoginController {
     @PostMapping
     public ResponseEntity<Map<String, Object>> loginUser(@RequestBody LoginRequest loginRequest) {
         Users user = usersService.authenticateUser(loginRequest);
+        System.out.println("Authenticated user ID: " + user.getIdUser());
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Login successful");
         response.put("idUser", user.getIdUser());

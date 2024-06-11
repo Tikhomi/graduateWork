@@ -22,4 +22,11 @@ public class SpecificationDic {
     @Column(name = "nm_specification")
     private String nmSpecification;
 
+    public String getName() {
+        return nmSpecification;
+    }
+
+    public void setName(String nmSpecification) {
+        this.nmSpecification = nmSpecification;
+    }
 }
