@@ -39,6 +39,16 @@ public class ClientController {
         }
     }
 
+    @GetMapping("/getByUserId/{idUser}")
+    public ResponseEntity<Client> getClientByUserId(@PathVariable("idUser") Long idUser) {
+        Client client = clientService.getClientByUserId(idUser);
+        if (client != null) {
+            return ResponseEntity.ok(client);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/add")
     public void addClient(@RequestBody Client client) {
         clientService.save(client);

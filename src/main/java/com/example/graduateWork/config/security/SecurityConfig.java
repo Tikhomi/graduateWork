@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/service/add", "/appointment/del/{idAppointment}",
                         "/payment/add","/doctor/del/{idDoctor}", "/client/add", "/api/reports/generateLastMonthReport", "/client/all", "/client/del/{idClient}"
                             , "/payment/all", "/payment/del/{idPayment}", "/service/del/{id_service}", "/service/all", "/user/get/{idUser}", "/appointment/last/{idUser}", "/user/all",
-                        "/client/getByUser/{idUser}")//добавить сюда еще список врачей
+                        "/client/getByUserId/{idUser}")//добавить сюда еще список врачей
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
