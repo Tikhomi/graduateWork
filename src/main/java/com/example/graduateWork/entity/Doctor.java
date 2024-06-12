@@ -41,7 +41,6 @@ public class Doctor {
     @JoinColumn(name = "id_specification")
     private SpecificationDic specificationDics;
 
-    // Correcting the getters and setters
     public Long getIdDoctor() {
         return idDoctor;
     }
@@ -106,7 +105,6 @@ public class Doctor {
         this.specificationDics = specificationDics;
     }
 
-    // Additional method for getting specialization name
     public String getSpecializationName() {
         return specificationDics != null ? specificationDics.getName() : null;
     }

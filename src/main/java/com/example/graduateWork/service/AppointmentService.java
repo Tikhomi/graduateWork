@@ -1,6 +1,7 @@
 package com.example.graduateWork.service;
 
 import com.example.graduateWork.dto.AppointmentDTO;
+import com.example.graduateWork.dto.DoctorAppointmentDTO;
 import com.example.graduateWork.dto.SimpleAppointmentDTO;
 import com.example.graduateWork.entity.*;
 import com.example.graduateWork.repository.AppointmentRepository;
@@ -11,6 +12,7 @@ import com.example.graduateWork.repository.StatusDicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -68,7 +70,8 @@ public class AppointmentService {
                 appointment.getDescription(), appointment.getUserDoc(), appointment.getUserCl(), appointment.getStatus());
     }
 
-    public SimpleAppointmentDTO getLastAppointmentForUser(Long idUser) {
+
+    public SimpleAppointmentDTO getLastAppointmentForClient(Long idUser) {
         Optional<Appointment> optionalAppointment = appointmentRepository.findTopByUserClIdClientOrderByDtApDesc(idUser);
 
         if (optionalAppointment.isPresent()) {
@@ -80,7 +83,26 @@ public class AppointmentService {
             String serviceName = appointment.getService().getName();
             String statusName = appointment.getStatus().getNmStatus();
 
-            return new SimpleAppointmentDTO(appointment.getDtAp(), doctorName, serviceName, statusName);
+            LocalDateTime appointmentDate = appointment.getDtAp();
+
+            return new SimpleAppointmentDTO(appointmentDate, doctorName, serviceName, statusName);
+        } else {
+            return null;
+        }
+    }
+
+    public DoctorAppointmentDTO getLastAppointmentForDoctor(Long idUser) {
+        Optional<Appointment> optionalAppointment = appointmentRepository.findTopByUserDocIdDoctorOrderByDtApDesc(idUser);
+
+        if (optionalAppointment.isPresent()) {
+            Appointment appointment = optionalAppointment.get();
+            String clientName = appointment.getUserCl().getLastnameCl() + " " +
+                    appointment.getUserCl().getNameCl() + " " +
+                    appointment.getUserCl().getPatronymicCl();
+            String serviceName = appointment.getService().getName();
+            String statusName = appointment.getStatus().getNmStatus();
+
+            return new DoctorAppointmentDTO(appointment.getDtAp(), clientName, serviceName, statusName);
         } else {
             return null;
         }

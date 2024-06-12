@@ -5,6 +5,7 @@ import com.example.graduateWork.entity.Payment;
 import com.example.graduateWork.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,9 +38,8 @@ public class PaymentController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<PaymentDTO> addPayment(@RequestBody PaymentDTO paymentDTO) {
-        PaymentDTO savedPaymentDTO = paymentService.save(paymentDTO);
-        return ResponseEntity.ok(savedPaymentDTO);
+    public void addPayment(@RequestBody Payment payment) {
+        paymentService.save(payment);
     }
 
     @DeleteMapping("/del/{idPayment}")

@@ -1,6 +1,7 @@
 package com.example.graduateWork.service;
 
 import com.example.graduateWork.dto.DoctorDTO;
+import com.example.graduateWork.entity.Client;
 import com.example.graduateWork.entity.Doctor;
 import com.example.graduateWork.repository.DoctorRepository;
 import org.hibernate.Hibernate;
@@ -54,6 +55,10 @@ public class DoctorService {
     public Long delete (Long idDoctor){
         doctorRepository.deleteById(idDoctor);
         return idDoctor;
+    }
+
+    public Doctor getDoctorByUserId(Long userId) {
+        return doctorRepository.findByUsersIdUser(userId).orElse(null);
     }
 
     private DoctorDTO convertToDTO(Doctor doctor){

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -13,7 +14,6 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idAppointment")
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,10 +21,10 @@ public class Appointment {
     private Long idAppointment;
 
     @Column(name = "dt_rec")
-    private Date dtRec;
+    private LocalDateTime dtRec;
 
     @Column(name = "dt_ap")
-    private Date dtAp;
+    private LocalDateTime dtAp;
 
     @Column(name = "description")
     private String description;

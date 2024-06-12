@@ -13,4 +13,5 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     Appointment getAppointmentByIdAppointment(Long idAppointment);
     List<Appointment> findByDtRecBetween(Date dt_rec, Date dt_ap);
     Optional<Appointment> findTopByUserClIdClientOrderByDtApDesc(Long idClient);
+    Optional<Appointment> findTopByUserDocIdDoctorOrderByDtApDesc(Long idDoctor);
 }

@@ -1,6 +1,7 @@
 package com.example.graduateWork.controller.common;
 
 import com.example.graduateWork.dto.DoctorDTO;
+import com.example.graduateWork.entity.Client;
 import com.example.graduateWork.entity.Doctor;
 import com.example.graduateWork.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,16 @@ public class DoctorController {
         DoctorDTO doctorDTO = doctorService.getDoctorById(idDoctor);
         if (doctorDTO != null) {
             return ResponseEntity.ok(doctorDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/getByUserId/{idUser}")
+    public ResponseEntity<Doctor> getClientByUserId(@PathVariable("idUser") Long idUser) {
+        Doctor doctor = doctorService.getDoctorByUserId(idUser);
+        if (doctor != null) {
+            return ResponseEntity.ok(doctor);
         } else {
             return ResponseEntity.notFound().build();
         }

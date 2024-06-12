@@ -37,15 +37,9 @@ public class PaymentService {
     }
 
     @Transactional
-    public PaymentDTO save(PaymentDTO paymentDTO) {
-        Payment payment = convertToEntity(paymentDTO);
-        Appointment appointment = payment.getAppointment();
-        if (appointment != null && appointment.getIdAppointment() == null) {
-            appointment = appointmentRepository.save(appointment);
-            payment.setAppointment(appointment);
-        }
+    public Payment save(Payment payment) {
         Payment savedPayment = paymentRepository.save(payment);
-        return convertToDTO(savedPayment);
+        return savedPayment;
     }
 
     public void delete(Long idPayment) {

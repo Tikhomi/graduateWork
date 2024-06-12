@@ -36,4 +36,55 @@ public class Client {
     @JoinColumn(name = "id_user")
     @JsonIgnore
     private Users users;
+
+    public Long getIdClient() {
+        return idClient;
+    }
+
+    public void setIdClient(Long idDocidClienttor) {
+        this.idClient = idClient;
+    }
+
+    public String getNameCl() {
+        return nameCl;
+    }
+
+    public void setNameCl(String nameCl) {
+        this.nameCl = nameCl;
+    }
+
+    public String getLastnameCl() {
+        return lastnameCl;
+    }
+
+    public void setLastnameCl(String lastnameCl) {
+        this.lastnameCl = lastnameCl;
+    }
+
+    public String getPatronymicCl() {
+        return patronymicCl;
+    }
+
+    public void setPatronymicCl(String patronymicCl) {
+        this.patronymicCl = patronymicCl;
+    }
+
+    public Date getBirthdayCl() {
+        return birthdayCl;
+    }
+
+    public void setBirthdayCl(Date birthdayCl) {
+        this.birthdayCl = birthdayCl;
+    }
+
+
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
 }
