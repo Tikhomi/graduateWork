@@ -13,9 +13,9 @@ public class JacksonConfig {
     public ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
 
-//        Hibernate5Module hibernate5Module = new Hibernate5Module();
-//        hibernate5Module.configure(Hibernate5Module.Feature.FORCE_LAZY_LOADING, false);
-//        mapper.registerModule(hibernate5Module);
+        Hibernate5Module hibernate5Module = new Hibernate5Module();
+        hibernate5Module.configure(Hibernate5Module.Feature.FORCE_LAZY_LOADING, false);
+        mapper.registerModule(hibernate5Module);
         //дата
         mapper.registerModule(new JavaTimeModule());
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
