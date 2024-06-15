@@ -1,0 +1,38 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Создание таблицы appointment -->
+    <changeSet id="createAppointmentTable" author="yourName">
+        <createTable tableName="appointment">
+            <column name="id_appointment" type="BIGINT"  autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dt_rec" type="DATE"/>
+            <column name="dt_ap" type="DATE"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <!-- Добавлены столбцы для внешних ключей -->
+            <column name="id_doctor" type="BIGINT"/>
+            <column name="id_client" type="BIGINT"/>
+            <column name="id_status" type="BIGINT"/>
+            <column name="id_service" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Добавление внешних ключей в таблицу appointment -->
+    <changeSet id="addForeignKeysToAppointment" author="yourName">
+        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="id_doctor"
+                                 constraintName="fk_doc" referencedTableName="doctor"
+                                 referencedColumnNames="id_doctor" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="id_client"
+                                 constraintName="fk_client" referencedTableName="client"
+                                 referencedColumnNames="id_client" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="id_status"
+                                 constraintName="fk_status" referencedTableName="status_dic"
+                                 referencedColumnNames="id_status" onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="id_service"
+                                 constraintName="fk_service" referencedTableName="services"
+                                 referencedColumnNames="id_service" onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>
